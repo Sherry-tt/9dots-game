@@ -3,7 +3,6 @@ import React, { useContext, useRef, useState, createContext, useEffect } from "r
 import "../stylesheets/Ans.css";
 
 export function RightAns ({msg}) {
-
    return(
       <>
       <div className = "message"> Success! {msg} :) </div>
@@ -15,7 +14,7 @@ export function RightAns ({msg}) {
 export function WrongAns ({msg}) {
    return(
       <>
-      <div className = "message">Failed ! {msg} :( </div>
+      <div className = "message">Failed! {msg} :( </div>
       <p>(Click Start to try Again)</p>
       </>
    )
