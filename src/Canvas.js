@@ -2,24 +2,17 @@ import React, { useEffect } from "react";
 import { useCanvas } from "./CanvasContext";
 
 export function Canvas() {
-  const {
-    canvasRef,
-    prepareCanvas,
-    startDrawing,
-    finishDrawing,
-    draw,
-    putDots,
-  } = useCanvas();
+  const {canvasRef, initCanvas,startDrawing, endDrawing, draw, putDots } = useCanvas();
 
   useEffect(() => {
-    prepareCanvas();
+    initCanvas();
     putDots();
   }, []);
 
   return (
     <canvas
       onMouseDown={startDrawing}
-      onMouseUp={finishDrawing}
+      onMouseUp={endDrawing}
       onMouseMove={draw}
       ref={canvasRef}
     />

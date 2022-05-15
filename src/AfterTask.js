@@ -1,7 +1,7 @@
-import React, { useContext, useRef, useState, createContext, useEffect } from "react";
-import { PointContext } from "./PointContext";
-import { RightAns, WrongAns } from "./Ans";
-import "./AfterTask.css";
+import React, { useContext, useState, useEffect } from "react";
+import { PointContext } from "./contexts/PointContext";
+import { RightAns, WrongAns } from "./pages/Ans";
+import "./stylesheets/AfterTask.css";
 
 export function AfterTask () {
 
@@ -41,7 +41,6 @@ export function AfterTask () {
             }
 
             let indexs = [offsetX, offsetY];
-
             np.push(indexs)
       
          }
@@ -50,8 +49,6 @@ export function AfterTask () {
       setNpArray(npArray => [...npArray, np]);
       let finalRes = decideResult();
       setRes(finalRes);
-      console.log(finalRes);
-
    }
 
    const countDistance = (start, end) => {
@@ -61,12 +58,11 @@ export function AfterTask () {
 
    const decideConnected = () => {
       // const err = Math.min(width, height) * 1/1000;
-      const err = 100;
+      const err = 80;
       for(var i = 0; i < 3; i++) {
          var dist =  countDistance(start[i+1], end[i]);
 
          if(dist > err) {
-            console.log("false from decideConnected part");
             return false;
          }
       }
@@ -74,8 +70,6 @@ export function AfterTask () {
    }
 
    const decidePointOn = () => {
-      console.log(np);
-
       var a={}, b={}, c={};
 
       for(var i = 0; i < 9; i++) {
@@ -102,7 +96,6 @@ export function AfterTask () {
                   break
                } 
             } else if(j == 3) {
-  
                return false;
             }
          }
@@ -112,7 +105,7 @@ export function AfterTask () {
 
    const decideResult = () => {
       if(!decideConnected()) {
-         setmsg("Not Across Through All Points")
+         setmsg("Lines Are Not Connected")
          return false
       }
       const result = decidePointOn();
@@ -120,9 +113,7 @@ export function AfterTask () {
          setmsg("You Solved the Problem")
       } else {
          setmsg("Not Across Through All Points")
-         
       }
-
       return result;
    }
 
@@ -132,11 +123,8 @@ export function AfterTask () {
 
    return (
       <div className = "parent">
-        <hr />
         <div className = "content">
          <h2>Finished!</h2>
-         {/* <button > Exit </button>   
-         <button onClick={nineCoord}> View Results </button> */}
          {res ? ( <RightAns msg={msg}/>): ( <WrongAns msg={msg}/>)}
          </div>
       </div>

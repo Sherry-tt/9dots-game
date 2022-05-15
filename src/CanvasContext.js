@@ -1,35 +1,29 @@
 import React, { useContext, useRef, useState, createContext } from "react";
-import { TimeContext } from "./TimeContext";
-import { PointContext } from "./PointContext";
+import { TimeContext } from "./contexts/TimeContext";
+import { PointContext } from "./contexts/PointContext";
 
 const CanvasContext = createContext();
 
-
 export const CanvasProvider = ({ children }) => {
   const [isDrawing, setIsDrawing] = useState(false)
+  const [line, setLine] = useState(false);
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   
-  const [line, setLine] = useState(false);
-
-
   const { resTime, setResTime} = useContext(TimeContext);
   const { startPoint, setStartPoint, endPoint, setEndPoint} = useContext(PointContext);
 
-  const prepareCanvas = () => {
-    const canvas = canvasRef.current
-    canvas.width = window.innerWidth * 2;
-    canvas.height = window.innerHeight * 2;
-    canvas.style.width = `${window.innerWidth}px`;
-    canvas.style.height = `${window.innerHeight}px`;
+  const initCanvas = () => {
+    canvasRef.current.width = window.innerWidth * 2;
+    canvasRef.current.height = window.innerHeight * 2;
+    canvasRef.current.style.width = `${window.innerWidth}px`;
+    canvasRef.current.style.height = `${window.innerHeight}px`;
 
-    const context = canvas.getContext("2d")
-    context.scale(2, 2);
-    context.lineCap = "round";
-    context.strokeStyle = "black";
-    context.lineWidth = 10;
-    contextRef.current = context;
-
+    contextRef.current = canvasRef.current.getContext("2d")
+    contextRef.current.scale(2, 2);
+    contextRef.current.lineCap = "round";
+    contextRef.current.strokeStyle = "black";
+    contextRef.current.lineWidth = 10;
   };
 
   const putDots = () => {
@@ -44,7 +38,6 @@ export const CanvasProvider = ({ children }) => {
     let offset  = Math.round(Math.min(width*0.15, height*0.15));
   
     contextRef.current.lineWidth = 30;
-    let id = -1;
 
     for(let i = 0; i < 3; i++) {
       if(i == 1) {
@@ -52,14 +45,13 @@ export const CanvasProvider = ({ children }) => {
       } else if(i == 2) {
         offsetX  =  Math.round(offsetX + offset*2);
       }
-      for(let j= 0; j < 3; j++) {
 
+      for(let j= 0; j < 3; j++) {
         if(j == 1) {
           offsetY  =  Math.round(offsetY- offset);
         } else if(j == 2) {
           offsetY  =  Math.round(offsetY + offset*2);
         }
-
         contextRef.current.beginPath();
         contextRef.current.moveTo(offsetX, offsetY);
         contextRef.current.lineTo(offsetX+movX, offsetY+movY);
@@ -71,7 +63,6 @@ export const CanvasProvider = ({ children }) => {
     contextRef.current.lineWidth = 10;
   };
 
- 
   const startDrawing = ({ nativeEvent }) => {
     setLine(false);
     const { offsetX, offsetY } = nativeEvent;
@@ -82,24 +73,22 @@ export const CanvasProvider = ({ children }) => {
     setEndPoint(endPoint => [...endPoint, [offsetX, offsetY]]);
   };
 
-  const finishDrawing = () => {
+  const endDrawing = () => {
     contextRef.current.closePath();
-    // newLine();
-
     setIsDrawing(false);
     setResTime(resTime-1);
-    
   };
 
   function newLine() {
     const start = startPoint[3-resTime];
     const end = endPoint[3-resTime];
     contextRef.current.beginPath();
-    console.log(start);
     contextRef.current.strokeStyle = "red";
+    contextRef.current.lineWidth = 4;
     contextRef.current.moveTo(start[0], start[1]);
     contextRef.current.lineTo(end[0], end[1]);
     contextRef.current.stroke();
+    contextRef.current.lineWidth = 10;
     contextRef.current.strokeStyle = "black";
     contextRef.current.closePath();
   }
@@ -120,31 +109,14 @@ export const CanvasProvider = ({ children }) => {
     const arr = [...endPoint];
     arr[4-resTime] = [offsetX, offsetY];
     setEndPoint(arr);
-
   };
 
-  const clearCanvas = () => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d")
-    context.fillStyle = "white"
-    context.fillRect(0, 0, canvas.width, canvas.height)
-  }
-
   return (
-    <CanvasContext.Provider
-      value={{
-        canvasRef,
-        contextRef,
-        prepareCanvas,
-        startDrawing,
-        finishDrawing,
-        clearCanvas,
-        draw,
-        putDots,
-      }}
-    >
-      {children}
-    </CanvasContext.Provider>
+    <div>
+      <CanvasContext.Provider value={{canvasRef, initCanvas, startDrawing, endDrawing, draw, putDots,}}>
+        {children}
+      </CanvasContext.Provider>
+    </div>
   );
 };
 

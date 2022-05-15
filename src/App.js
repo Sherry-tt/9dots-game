@@ -1,16 +1,12 @@
 
-import React, { useState, useMemo } from "react";
-import './App.css';
+import React, { useState} from "react";
+import './stylesheets/App.css';
 import { Canvas } from './Canvas'
 import { AfterTask } from './AfterTask'
-import Dots from './Dots'
-import { ClearCanvasButton } from './ClearCanvasButton';
 import { CanvasProvider } from "./CanvasContext";
-import { useCanvas } from "./CanvasContext";
-import { TimeContext } from "./TimeContext";
-import { PointContext } from "./PointContext";
+import { TimeContext } from "./contexts/TimeContext";
+import { PointContext } from "./contexts/PointContext";
 
-// export function App() {
 function App() {
   const [resTime, setResTime] = useState(4);
   const [startPoint, setStartPoint] = useState([]);
@@ -19,14 +15,17 @@ function App() {
 
   return (
     <>
+      <hr />
+      <p className = "remain"> You have <b>{resTime} </b> times remain...</p>
+
       <TimeContext.Provider value= {{resTime, setResTime}}>
         <PointContext.Provider value= {{startPoint, setStartPoint, endPoint, setEndPoint}}>
           <CanvasProvider>
             {resTime > 0 ? (<Canvas />) : (<AfterTask />)}
           </CanvasProvider>
+          
         </PointContext.Provider>
       </TimeContext.Provider>
-
 
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState, createContext, useEffect } from "react";
 
-import "./Ans.css";
+import "../stylesheets/Ans.css";
 
 export function RightAns ({msg}) {
 
