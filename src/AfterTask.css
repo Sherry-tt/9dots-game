@@ -1,0 +1,17 @@
+/* body {
+   margin: 0;
+   font-family: "Montserrat";
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   background: #80deea;
+ } */
+
+.parent {
+   text-align: center;
+
+   padding: 10px;
+ }
+
+ .content {
+  padding: 10%;
+ }
