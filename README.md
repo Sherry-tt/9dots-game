@@ -1,29 +1,34 @@
-# Getting Started with Create React App
+# Getting Started with 9-dots Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 
 ### Development Instructions
-1. Run `git clone git@github.com:Hackathon-CITeam/CITeams.git` to clone the project to your local machine.
+1. Run `git clone https://github.com/Sherry-tt/9dots-game.git` to clone the project to your local machine.
 2. `cd` into the repo you just created.
 3. Run `npm start dev` to start the Game.
+4. Open [http://localhost:3000](http://localhost:3000) to view it in browser.
 
+### Questions
+1. About how many hours did it take for you to implement this task?
 
+    About 20 hours.
+
+2. What was your biggest challenge in implementing this task?
+
+   I was not very familier with the `canvas` element before this task, so I spent some time on stydying how it works to draw graphics on a web page.
+   
+3. What was a key design decision you made for this implementation?
+
+   The main logistic of the game:
+   - Ask participants draw line segments that pass through all dots.
+   - Decide the correctness of answer by checking if the adjacent lines are connected end to end and all 9 nodes is successfully passed through.
+
+   The key decision I made for implementing this game is how to decide the success of game. Considering the width of line and visual errors, this game set a tolerance when checking the correctness.
+   
+4. (If unfinished) What do you plan to implement next?
+  
+   - Run game on Empirica.
+   - Improve game logic and and make it be multi-player.
+  
 
