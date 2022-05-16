@@ -13,7 +13,7 @@
 ### Questions
 1. About how many hours did it take for you to implement this task?
 
-    About 20 hours.
+    About 25 hours.
 
 2. What was your biggest challenge in implementing this task?
 
