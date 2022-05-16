@@ -6,8 +6,9 @@
 ### Development Instructions
 1. Run `git clone https://github.com/Sherry-tt/9dots-game.git` to clone the project to your local machine.
 2. `cd` into the repo you just created.
-3. Run `npm start dev` to start the Game.
-4. Open [http://localhost:3000](http://localhost:3000) to view it in browser.
+3. Run `npm install` to install required packages.
+4. Run `npm start run` to start the Game.
+5. Open [http://localhost:3000](http://localhost:3000) to view it in browser.
 
 ### Questions
 1. About how many hours did it take for you to implement this task?
