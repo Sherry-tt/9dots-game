@@ -17,7 +17,7 @@
 
 2. What was your biggest challenge in implementing this task?
 
-   I was not very familier with the `canvas` element before this task, so I spent some time on stydying how it works to draw graphics on a web page.
+   I was not very familier with the `canvas` element before this task, so I spent some time on studying how it works to draw graphics on a web page.
    
 3. What was a key design decision you made for this implementation?
 
