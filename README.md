@@ -29,7 +29,7 @@
    
 4. (If unfinished) What do you plan to implement next?
   
-   - Run game on Empirica. Since I use React Hooks in this project which can not be used in v1 Empirica because of the version of react, I don't have enough time to make it work on Empirica now. Therefore, I will fulfill this in the next step.
+   - Run game on Empirica. Since I use some React APIs in this project which can not be used in v1 Empirica because of the version of react, I don't have enough time to make it work on Empirica now. Therefore, I will fulfill this in the next step.
    - Improve game logic and and make it be multi-player.
   
 
