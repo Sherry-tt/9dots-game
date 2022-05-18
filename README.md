@@ -8,7 +8,7 @@
 2. `cd` into the repo you just created.
 3. Run `npm install` to install required packages.
 4. Run `npm start run` to start the Game.
-5. Open [http://localhost:3000](http://localhost:3000) to view it in browser.
+5. Open [localhost:3000](http://localhost:3000) to view it in browser.
 
 ### Questions
 1. About how many hours did it take for you to implement this task?
